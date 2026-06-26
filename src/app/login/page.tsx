@@ -8,19 +8,19 @@ const STATUS_MESSAGES: Record<string, { tone: "ok" | "error"; text: string }> =
   {
     sent: {
       tone: "ok",
-      text: "Check your email — we've sent you a sign-in link.",
+      text: "Right, check your email, ya muppet — your sign-in link's on its way.",
     },
     invalid_email: {
       tone: "error",
-      text: "That doesn't look like an email address.",
+      text: "That's not an email address, ya daft cunt. Try again.",
     },
     send_failed: {
       tone: "error",
-      text: "Couldn't send the link. Try again in a minute.",
+      text: "Bollocks — couldn't send the link. Have another go in a minute.",
     },
     invalid_link: {
       tone: "error",
-      text: "That sign-in link is invalid or has expired. Request a new one.",
+      text: "That link's knackered or expired, ya slow cunt. Get a fresh one.",
     },
   };
 
@@ -37,7 +37,8 @@ export default async function LoginPage({
       <div className="w-full max-w-sm">
         <Wordmark height={40} />
         <p className="mt-1 text-sm text-[var(--muted)]">
-          The SEXY way to know when your mates are in the same city.
+          The filthiest way to clock which mate&apos;s in your city. Pints, ya
+          cunt?
         </p>
 
         <form action={sendMagicLink} className="mt-8 flex flex-col gap-3">
@@ -57,7 +58,7 @@ export default async function LoginPage({
             type="submit"
             className="mt-1 btn-amber"
           >
-            Email me a sign-in link
+            Send me the sodding link
           </button>
         </form>
 

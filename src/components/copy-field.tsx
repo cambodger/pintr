@@ -35,7 +35,7 @@ export function CopyField({ value, label }: { value: string; label: string }) {
         onClick={copy}
         className="shrink-0 rounded-lg border border-[var(--line)] px-3 text-sm font-medium hover:bg-white/5"
       >
-        {copied ? "Copied ✓" : "Copy"}
+        {copied ? "Nicked ✓" : "Nick it"}
       </button>
     </div>
   );

@@ -68,7 +68,7 @@ export default async function GroupPage({
 
       {status === "failed" && (
         <p role="status" className="mt-4 banner banner-bad text-sm">
-          Something went wrong. Try again in a minute.
+          Summat&apos;s gone wrong. Try again in a minute.
         </p>
       )}
 
@@ -96,7 +96,9 @@ export default async function GroupPage({
               ))}
             </ul>
 
-            <p className="mt-4 text-sm text-[var(--muted)]">Invite code:</p>
+            <p className="mt-4 text-sm text-[var(--muted)]">
+              Invite code (fling it at a mate):
+            </p>
             <div className="mt-1">
               <CopyField value={group.invite_code} label="Group invite code" />
             </div>
@@ -105,8 +107,8 @@ export default async function GroupPage({
               <form action={leaveGroup}>
                 <input type="hidden" name="group_id" value={group.id} />
                 <ConfirmButton
-                  label="Leave group"
-                  confirmLabel="Tap again to leave"
+                  label="Leg it from this group"
+                  confirmLabel="Tap again to leg it"
                 />
               </form>
             </div>

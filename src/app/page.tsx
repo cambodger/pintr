@@ -104,11 +104,8 @@ export default async function HomePage({
             Settings
           </Link>
           <form action={signOut}>
-            <button
-              type="submit"
-              className="link"
-            >
-              Sign out
+            <button type="submit" className="link">
+              Sod off
             </button>
           </form>
         </div>
@@ -117,24 +114,20 @@ export default async function HomePage({
       <InstallPrompt />
 
       {ping && (
-        <p
-          role="status"
-          className="mt-4 banner banner-ping text-sm"
-        >
+        <p role="status" className="mt-4 banner banner-ping text-sm">
           {ping}
         </p>
       )}
 
       {me.ghost_mode && (
         <div className="mt-4 flex items-center justify-between rounded-lg bg-[var(--surface)] px-3 py-2 text-sm">
-          <span>👻 You&apos;re invisible — no one can see where you are.</span>
+          <span>
+            👻 You&apos;ve gone dark — not a single cunt can see where you are.
+          </span>
           <form action={setGhost}>
             <input type="hidden" name="ghost" value="false" />
-            <button
-              type="submit"
-              className="font-medium link"
-            >
-              Back online
+            <button type="submit" className="font-medium link">
+              Show yourself
             </button>
           </form>
         </div>
@@ -144,11 +137,8 @@ export default async function HomePage({
         <PresenceMap pins={pins} meId={me.id} />
       </div>
 
-      <Link
-        href="/checkin"
-        className="mt-4 block btn-amber text-center"
-      >
-        📍 Check in
+      <Link href="/checkin" className="mt-4 block btn-amber text-center">
+        📍 Drop your pin
       </Link>
 
       <div className="mt-3 flex justify-center gap-6 text-sm text-[var(--muted)]">
@@ -162,21 +152,21 @@ export default async function HomePage({
           <form action={setGhost}>
             <input type="hidden" name="ghost" value="true" />
             <button type="submit" className="link">
-              Go invisible
+              Vanish
             </button>
           </form>
         )}
         {myPin && (
           <form action={clearPresence}>
             <button type="submit" className="link">
-              Stop sharing
+              Pack it in
             </button>
           </form>
         )}
       </div>
 
       <section className="mt-6 card p-4">
-        <h2 className="font-semibold">Who&apos;s about</h2>
+        <h2 className="font-semibold">Which cunts are about</h2>
         <ul className="mt-2 divide-y divide-[var(--line)]">
           {rosterSorted.map((m) => {
             const here = presenceByMember.get(m.id);
@@ -199,8 +189,8 @@ export default async function HomePage({
                     {here
                       ? `${cityLabel(here.city_name ?? "", here.country_code)} · ${timeAgo(here.since ?? "")}`
                       : m.ghost_mode
-                        ? "👻 hidden"
-                        : "not sharing right now"}
+                        ? "👻 hiding, the coward"
+                        : "off the grid"}
                   </p>
                 </div>
               </li>
@@ -212,7 +202,7 @@ export default async function HomePage({
       <section className="mt-4 card p-4">
         <h2 className="font-semibold">{primaryGroup.name}</h2>
         <p className="mt-1 text-sm text-[var(--muted)]">
-          Share this code to bring a mate in:
+          Fling this code at a mate to drag &apos;em in:
         </p>
         <div className="mt-3">
           <CopyField value={primaryGroup.invite_code} label="Group invite code" />

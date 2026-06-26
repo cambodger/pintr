@@ -60,21 +60,18 @@ export default async function PingsPage() {
         <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
           Pings 🍻
         </h1>
-        <Link
-          href="/"
-          className="text-sm link"
-        >
+        <Link href="/" className="text-sm link">
           Back
         </Link>
       </header>
       <p className="mt-1 text-sm text-[var(--muted)]">
-        Every time you and a mate landed in the same city.
+        Every time you and a mate ended up in the same city. Fate, innit.
       </p>
 
       {(matches ?? []).length === 0 ? (
         <p className="mt-8 card-dashed p-6 text-center text-sm text-[var(--muted)]">
-          No pings yet. Check in somewhere — when a mate&apos;s in the same
-          city, it&apos;ll show up here.
+          No pings yet, ya Billy no-mates. Check in somewhere — soon as a
+          mate&apos;s in the same city, it&apos;ll show up here.
         </p>
       ) : (
         <ul className="mt-4 divide-y divide-[var(--line)]">

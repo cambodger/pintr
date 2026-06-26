@@ -12,14 +12,14 @@ function pingMessage(
   matches: { other_display_name: string }[],
 ): string {
   if (!matches || matches.length === 0) {
-    return `📍 Checked in to ${city}. No mates here yet — first round's on you. 🍺`;
+    return `📍 Checked in to ${city}. Not a mate in sight, ya sad lonely cunt — first round's on you. 🍺`;
   }
   const names = [...new Set(matches.map((m) => m.other_display_name))];
   if (names.length === 1) {
-    return `🍻 ${city}: ${names[0]} is here too — go grab a pint!`;
+    return `🍻 ${city}: ${names[0]}'s here too, ya jammy cunt — get the pints in!`;
   }
   const last = names.pop();
-  return `🍻 ${city}: ${names.join(", ")} & ${last} are all here too!`;
+  return `🍻 ${city}: ${names.join(", ")} & ${last} are ALL here — round up the cunts!`;
 }
 
 /** Manual check-in: a city chosen from the seeded list. */

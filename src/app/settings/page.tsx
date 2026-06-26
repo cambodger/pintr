@@ -9,14 +9,14 @@ export const metadata: Metadata = { title: "Settings" };
 
 const STATUS_MESSAGES: Record<string, { tone: "ok" | "error"; text: string }> =
   {
-    saved: { tone: "ok", text: "Profile saved." },
-    status_saved: { tone: "ok", text: "Status updated." },
-    ghost_saved: { tone: "ok", text: "Visibility updated." },
+    saved: { tone: "ok", text: "Profile sorted." },
+    status_saved: { tone: "ok", text: "Status sorted." },
+    ghost_saved: { tone: "ok", text: "Visibility sorted." },
     invalid_name: {
       tone: "error",
-      text: "Your name needs to be 1 to 80 characters.",
+      text: "Name needs to be 1 to 80 characters, ya cunt.",
     },
-    failed: { tone: "error", text: "Something went wrong. Try again." },
+    failed: { tone: "error", text: "That went tits up. Try again." },
   };
 
 const inputClass = "input";
@@ -50,10 +50,7 @@ export default async function SettingsPage({
         <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
           Settings
         </h1>
-        <Link
-          href="/"
-          className="text-sm link"
-        >
+        <Link href="/" className="text-sm link">
           Back
         </Link>
       </header>
@@ -90,7 +87,7 @@ export default async function SettingsPage({
             </div>
           </div>
           <button type="submit" className={buttonClass}>
-            Save profile
+            Save it
           </button>
         </form>
       </section>
@@ -98,7 +95,8 @@ export default async function SettingsPage({
       <section className="mt-4 card p-4">
         <h2 className="font-semibold">Status</h2>
         <p className="mt-1 text-sm text-[var(--muted)]">
-          A line shown next to your pin. Leave blank to clear it.
+          A line shown next to your pin — tell the lads what you&apos;re up to.
+          Leave blank to shut up.
         </p>
         <form action={updateStatus} className="mt-3 flex flex-col gap-3">
           <span className="text-sm font-medium">Emoji</span>
@@ -115,7 +113,7 @@ export default async function SettingsPage({
             name="status_text"
             maxLength={140}
             defaultValue={me.status_text ?? ""}
-            placeholder="free tonight, who's about?"
+            placeholder="on the lash, who's about?"
             className={`${inputClass} flex-1`}
           />
           <button type="submit" className={buttonClass}>
@@ -128,8 +126,8 @@ export default async function SettingsPage({
         <h2 className="font-semibold">Visibility</h2>
         <p className="mt-1 text-sm text-[var(--muted)]">
           {me.ghost_mode
-            ? "You're invisible — no one can see where you are."
-            : "You're visible to your groups."}
+            ? "You're a ghost — no cunt can see where you are."
+            : "Your mates can see you. Hello."}
         </p>
         <form action={toggleGhost} className="mt-3">
           <input
@@ -141,7 +139,7 @@ export default async function SettingsPage({
             type="submit"
             className={me.ghost_mode ? "btn-amber" : "btn-ghost"}
           >
-            {me.ghost_mode ? "Come back online" : "👻 Go invisible"}
+            {me.ghost_mode ? "Show yourself" : "👻 Go dark"}
           </button>
         </form>
       </section>

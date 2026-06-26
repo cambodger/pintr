@@ -10,23 +10,23 @@ const STATUS_MESSAGES: Record<string, { tone: "ok" | "error"; text: string }> =
   {
     profile_saved: {
       tone: "ok",
-      text: "You're on the map — now join your mates or start a group.",
+      text: "You're on the map, ya beauty — now join your mates or start your own lot.",
     },
     invalid_name: {
       tone: "error",
-      text: "Your name needs to be between 1 and 80 characters.",
+      text: "Your name needs to be 1 to 80 characters, ya cunt. It's not hard.",
     },
     invalid_group: {
       tone: "error",
-      text: "Group names need to be between 1 and 80 characters.",
+      text: "Group names need to be 1 to 80 characters. Sort it out.",
     },
     bad_invite_code: {
       tone: "error",
-      text: "That invite code isn't right — check it with whoever shared it.",
+      text: "That code's wrong, ya numpty — badger whoever sent it to you.",
     },
     rpc_failed: {
       tone: "error",
-      text: "Something went wrong. Try again in a minute.",
+      text: "Something's gone tits up. Try again in a minute.",
     },
   };
 
@@ -77,10 +77,10 @@ export default async function OnboardingPage({
     return (
       <main className="mx-auto w-full max-w-md flex-1 px-4 py-10">
         <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
-          Welcome to pintr
+          Welcome to pintr, ya legend
         </h1>
         <p className="mt-1 text-sm text-[var(--muted)]">
-          First, how should you show up on the map?
+          First up — how should you show up on the map, ya sexy cunt?
         </p>
         <StatusBanner status={status} />
 
@@ -100,12 +100,12 @@ export default async function OnboardingPage({
             <div>
               <span className="text-sm font-medium">Your pin emoji</span>
               <p className="mb-2 text-xs text-[var(--muted)]">
-                This is your marker on the map — tap one.
+                This is your mug on the map. Pick one, ya animal.
               </p>
               <EmojiPicker name="pin_emoji" defaultValue="📍" />
             </div>
             <button type="submit" className={buttonClass}>
-              Save and continue
+              Crack on
             </button>
           </form>
         </section>
@@ -127,18 +127,18 @@ export default async function OnboardingPage({
   return (
     <main className="mx-auto w-full max-w-md flex-1 px-4 py-10">
       <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
-        Nearly there, {me.display_name}
+        Almost sorted, {me.display_name}
       </h1>
       <p className="mt-1 text-sm text-[var(--muted)]">
-        A group is your circle of mates. Start one and share the code, or join
-        with a code someone sent you.
+        A group is your circle of reprobates. Start one and lob the code at your
+        mates, or pile into one with a code some cunt sent you.
       </p>
       <StatusBanner status={status} />
 
       <section className="mt-8 card p-4">
-        <h2 className="font-semibold">Start a group</h2>
+        <h2 className="font-semibold">Start your own lot</h2>
         <p className="mt-1 text-sm text-[var(--muted)]">
-          You&apos;ll get an invite code to share.
+          You&apos;ll get an invite code to fling at your mates.
         </p>
         <form action={createGroup} className="mt-3 flex flex-col gap-3">
           <label htmlFor="group_name" className="text-sm font-medium">
@@ -153,7 +153,7 @@ export default async function OnboardingPage({
             className={inputClass}
           />
           <button type="submit" className={buttonClass}>
-            Create group
+            Start the group
           </button>
         </form>
       </section>
@@ -161,7 +161,7 @@ export default async function OnboardingPage({
       <div className="mt-6 text-center text-sm text-[var(--muted)]">— or —</div>
 
       <section className="mt-6 card p-4">
-        <h2 className="font-semibold">Join a group</h2>
+        <h2 className="font-semibold">Pile into a mate&apos;s group</h2>
         <form action={joinGroup} className="mt-3 flex flex-col gap-3">
           <label htmlFor="invite_code" className="text-sm font-medium">
             Invite code
@@ -176,7 +176,7 @@ export default async function OnboardingPage({
             className={inputClass}
           />
           <button type="submit" className={buttonClass}>
-            Join group
+            Pile in
           </button>
         </form>
       </section>

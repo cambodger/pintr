@@ -7,9 +7,9 @@ import { CityPicker } from "@/components/city-picker";
 export const metadata: Metadata = { title: "Check in" };
 
 const STATUS_MESSAGES: Record<string, string> = {
-  bad_city: "That wasn't a valid city — try again.",
-  bad_coords: "Couldn't read your location. Pick a city from the list.",
-  failed: "Check-in failed. Try again in a minute.",
+  bad_city: "That's not a real city, ya wally — try again.",
+  bad_coords: "Couldn't get a fix on you. Pick a city from the list.",
+  failed: "Check-in shat itself. Try again in a minute.",
 };
 
 export default async function CheckinPage({
@@ -42,25 +42,19 @@ export default async function CheckinPage({
     <main className="mx-auto w-full max-w-md flex-1 px-4 py-6">
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
-          Check in
+          Where you at?
         </h1>
-        <Link
-          href="/"
-          className="text-sm link"
-        >
+        <Link href="/" className="text-sm link">
           Back
         </Link>
       </header>
       <p className="mt-1 text-sm text-[var(--muted)]">
-        Let your mates know which city you&apos;re in. We only ever share the
-        city — never your exact spot.
+        Tell your mates which city you&apos;re in. We only ever share the city —
+        never your exact spot, so no cunt can turn up at your gaff uninvited.
       </p>
 
       {status && STATUS_MESSAGES[status] && (
-        <p
-          role="status"
-          className="mt-4 banner banner-bad text-sm"
-        >
+        <p role="status" className="mt-4 banner banner-bad text-sm">
           {STATUS_MESSAGES[status]}
         </p>
       )}

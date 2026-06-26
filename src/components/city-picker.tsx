@@ -8,7 +8,7 @@ type City = { id: string; name: string; country_code: string };
 
 /**
  * Two ways to check in: tap a city from the (filterable) seeded list, or hit
- * "Use my location" — which reads coarse GPS, reverse-geocodes it to a city
+ * "Find my city" — which reads coarse GPS, reverse-geocodes it to a city
  * name in the browser (BigDataCloud's free, keyless client endpoint), and
  * submits the coords to check_in_by_coords(). Both submit real <form>s whose
  * `action` is a Server Action, so the mutation stays on the server.
@@ -35,7 +35,7 @@ export function CityPicker({ cities }: { cities: City[] }) {
   function detect() {
     setError(null);
     if (!("geolocation" in navigator)) {
-      setError("This browser can't share location — pick a city below.");
+      setError("This browser's too thick to share location — pick a city below.");
       return;
     }
     setLocating(true);
@@ -51,7 +51,7 @@ export function CityPicker({ cities }: { cities: City[] }) {
             data.city || data.locality || data.principalSubdivision || "";
           const cc: string = data.countryCode || "";
           if (!name) {
-            setError("Couldn't pin your city — pick one from the list.");
+            setError("Couldn't pin your city — pick one from the list, ya cunt.");
             setLocating(false);
             return;
           }
@@ -61,12 +61,14 @@ export function CityPicker({ cities }: { cities: City[] }) {
           ccRef.current!.value = cc;
           coordsForm.current!.requestSubmit();
         } catch {
-          setError("Location lookup failed — pick a city from the list.");
+          setError("Location lookup shat the bed — pick a city from the list.");
           setLocating(false);
         }
       },
       () => {
-        setError("Location permission denied — pick a city from the list.");
+        setError(
+          "You blocked location, ya paranoid sod — pick a city from the list.",
+        );
         setLocating(false);
       },
       { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 },
@@ -81,14 +83,11 @@ export function CityPicker({ cities }: { cities: City[] }) {
         disabled={locating}
         className="btn-amber w-full disabled:opacity-60"
       >
-        {locating ? "Locating…" : "📍 Use my location"}
+        {locating ? "Sniffing you out…" : "📍 Find my city"}
       </button>
 
       {error && (
-        <p
-          role="status"
-          className="mt-3 banner banner-bad"
-        >
+        <p role="status" className="mt-3 banner banner-bad">
           {error}
         </p>
       )}
@@ -104,7 +103,7 @@ export function CityPicker({ cities }: { cities: City[] }) {
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="…or search for a city"
+        placeholder="…or just type a city, ya cunt"
         autoComplete="off"
         spellCheck={false}
         className="mt-5 w-full input"
@@ -126,7 +125,7 @@ export function CityPicker({ cities }: { cities: City[] }) {
         ))}
         {matches.length === 0 && (
           <li className="py-3 text-sm text-[var(--muted)]">
-            No match in the list — &ldquo;Use my location&rdquo; works anywhere.
+            Nowt matches — &ldquo;Find my city&rdquo; works anywhere.
           </li>
         )}
       </ul>
