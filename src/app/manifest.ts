@@ -10,7 +10,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "pintr",
     short_name: "pintr",
-    description: "Know when your mates are in the same city. Time for a pint.",
+    description: "The SEXY way to know when your mates are in the same city.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

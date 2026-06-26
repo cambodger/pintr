@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     default: "pintr",
     template: "%s · pintr",
   },
-  description: "Know when your mates are in the same city. Time for a pint.",
+  description: "The SEXY way to know when your mates are in the same city.",
   // iOS only shows web push / installs properly once added to the home
   // screen — these make that install experience look right.
   appleWebApp: {

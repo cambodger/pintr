@@ -38,7 +38,7 @@ export default async function LoginPage({
           pintr 🍺
         </h1>
         <p className="mt-1 text-sm text-neutral-500">
-          Know when your mates are in the same city.
+          The SEXY way to know when your mates are in the same city.
         </p>
 
         <form action={sendMagicLink} className="mt-8 flex flex-col gap-3">
