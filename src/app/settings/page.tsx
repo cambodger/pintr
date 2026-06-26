@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { EmojiPicker } from "@/components/emoji-picker";
 import { toggleGhost, updateProfile, updateStatus } from "./actions";
 
 export const metadata: Metadata = { title: "Settings" };
@@ -82,16 +83,12 @@ export default async function SettingsPage({
             defaultValue={me.display_name}
             className={inputClass}
           />
-          <label htmlFor="pin_emoji" className="text-sm font-medium">
-            Pin emoji
-          </label>
-          <input
-            id="pin_emoji"
-            name="pin_emoji"
-            maxLength={16}
-            defaultValue={me.pin_emoji}
-            className={inputClass}
-          />
+          <div>
+            <span className="text-sm font-medium">Pin emoji</span>
+            <div className="mt-2">
+              <EmojiPicker name="pin_emoji" defaultValue={me.pin_emoji} />
+            </div>
+          </div>
           <button type="submit" className={buttonClass}>
             Save profile
           </button>
@@ -104,22 +101,23 @@ export default async function SettingsPage({
           A line shown next to your pin. Leave blank to clear it.
         </p>
         <form action={updateStatus} className="mt-3 flex flex-col gap-3">
-          <div className="flex gap-2">
-            <input
-              name="status_emoji"
-              maxLength={16}
-              defaultValue={me.status_emoji ?? ""}
-              placeholder="🍺"
-              className={`${inputClass} w-16 text-center`}
-            />
-            <input
-              name="status_text"
-              maxLength={140}
-              defaultValue={me.status_text ?? ""}
-              placeholder="free tonight, who's about?"
-              className={`${inputClass} flex-1`}
-            />
-          </div>
+          <span className="text-sm font-medium">Emoji</span>
+          <EmojiPicker
+            name="status_emoji"
+            defaultValue={me.status_emoji ?? ""}
+            allowEmpty
+          />
+          <label htmlFor="status_text" className="text-sm font-medium">
+            Status line
+          </label>
+          <input
+            id="status_text"
+            name="status_text"
+            maxLength={140}
+            defaultValue={me.status_text ?? ""}
+            placeholder="free tonight, who's about?"
+            className={`${inputClass} flex-1`}
+          />
           <button type="submit" className={buttonClass}>
             Save status
           </button>

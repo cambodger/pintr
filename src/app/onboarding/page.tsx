@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { EmojiPicker } from "@/components/emoji-picker";
 import { createGroup, joinGroup, saveProfile } from "./actions";
 
 export const metadata: Metadata = { title: "Get set up" };
@@ -96,20 +97,13 @@ export default async function OnboardingPage({
               placeholder="Andy"
               className={inputClass}
             />
-            <label htmlFor="pin_emoji" className="text-sm font-medium">
-              Your pin emoji
-            </label>
-            <input
-              id="pin_emoji"
-              name="pin_emoji"
-              maxLength={16}
-              defaultValue="📍"
-              className={inputClass}
-            />
-            <p className="text-xs text-[var(--muted)]">
-              This is your marker on the map. Try 🍺 🧭 🐙 🎯 🦊 🌮 — paste any
-              emoji you like.
-            </p>
+            <div>
+              <span className="text-sm font-medium">Your pin emoji</span>
+              <p className="mb-2 text-xs text-[var(--muted)]">
+                This is your marker on the map — tap one.
+              </p>
+              <EmojiPicker name="pin_emoji" defaultValue="📍" />
+            </div>
             <button type="submit" className={buttonClass}>
               Save and continue
             </button>
