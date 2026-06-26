@@ -41,8 +41,7 @@ export default async function LoginPage({
       <div className="w-full max-w-sm">
         <Wordmark height={40} />
         <p className="mt-1 text-sm text-[var(--muted)]">
-          The filthiest way to clock which mate&apos;s in your city. Pints, ya
-          cunt?
+          Who&apos;s nearby for pints, ya cunt?
         </p>
 
         <form action={sendMagicLink} className="mt-8 flex flex-col gap-3">
@@ -62,7 +61,7 @@ export default async function LoginPage({
             type="submit"
             className="mt-1 btn-amber"
           >
-            Send me the sodding link
+            Send me the link
           </button>
         </form>
 
