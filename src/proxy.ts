@@ -71,6 +71,6 @@ export const config = {
   // Run on everything except static assets — auth logic must never block
   // CSS/JS/images, and the PWA manifest + icons must load pre-login.
   matcher: [
-    "/((?!_next/static|_next/image|favicon\\.ico|manifest\\.webmanifest|apple-touch-icon\\.png|icons/|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon\\.ico|manifest\\.webmanifest|apple-touch-icon\\.png|sw\\.js|icons/|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

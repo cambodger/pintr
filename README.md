@@ -89,10 +89,9 @@ Settings → Domains).
 TODO before the group joins:
 
 - Purge test data + dev users
-- **Web push + service worker** (so you're pinged when the app's closed — v1.5)
+- **Web push** — a minimal install service worker now ships (`public/sw.js`);
+  the push event handlers + closed-app ping are still v1.5
 - Nightly `pg_dump` backup to Unraid
-- An "add to home screen" onboarding nudge (installed PWA = once-per-device
-  login, and the prerequisite for iOS push)
 
 ## Known v1 gaps & accepted tradeoffs (deliberate)
 

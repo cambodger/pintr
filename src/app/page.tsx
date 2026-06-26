@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CopyField } from "@/components/copy-field";
 import { PresenceMap, type PresencePin } from "@/components/presence-map";
 import { Wordmark } from "@/components/wordmark";
+import { InstallPrompt } from "@/components/install-prompt";
 import { cityLabel, timeAgo } from "@/lib/format";
 import { clearPresence, setGhost, signOut } from "./actions";
 
@@ -112,6 +113,8 @@ export default async function HomePage({
           </form>
         </div>
       </header>
+
+      <InstallPrompt />
 
       {ping && (
         <p
