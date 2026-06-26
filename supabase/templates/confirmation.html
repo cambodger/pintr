@@ -1,0 +1,33 @@
+<!--
+  Supabase Auth → Email Templates → "Confirm signup" (first-time users).
+  Subject:  Welcome to pintr — your sign-in link
+  Paste the body below into the dashboard. The link MUST stay exactly as-is:
+    {{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email
+  It routes sign-in through our server-side /auth/confirm handler (verifyOtp),
+  which works regardless of which browser/device opens the email.
+-->
+<h2 style="font-family:Arial,Helvetica,sans-serif;color:#0a0e27;margin:0 0 12px;">
+  Welcome to <span style="color:#f59e0b;">pint</span><span style="color:#ff2e88;">r</span> 🍺
+</h2>
+
+<p style="font-family:Arial,Helvetica,sans-serif;color:#0a0e27;font-size:15px;line-height:1.5;">
+  Tap the button below to sign in for the first time. The link expires in
+  one hour and can only be used once.
+</p>
+
+<p>
+  <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email"
+     style="display:inline-block;padding:12px 28px;background:#f59e0b;color:#0a0e27;text-decoration:none;border-radius:10px;font-weight:bold;font-family:Arial,Helvetica,sans-serif;">
+    Sign in to pintr
+  </a>
+</p>
+
+<p style="font-family:Arial,Helvetica,sans-serif;color:#0a0e27;font-size:14px;line-height:1.5;">
+  If the button doesn't work, copy this link into your browser:<br>
+  {{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email
+</p>
+
+<p style="color:#6b7280;font-size:13px;font-family:Arial,Helvetica,sans-serif;">
+  Didn't expect this email? You can safely ignore it — nobody can sign in
+  without it.
+</p>
