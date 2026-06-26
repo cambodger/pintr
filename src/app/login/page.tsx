@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { sendMagicLink } from "./actions";
+import { Wordmark } from "@/components/wordmark";
 
 export const metadata: Metadata = { title: "Sign in" };
 
@@ -34,10 +35,8 @@ export default async function LoginPage({
   return (
     <main className="flex flex-1 items-center justify-center px-4">
       <div className="w-full max-w-sm">
-        <h1 className="text-4xl font-bold tracking-tight text-amber-600">
-          pintr 🍺
-        </h1>
-        <p className="mt-1 text-sm text-neutral-500">
+        <Wordmark height={40} />
+        <p className="mt-1 text-sm text-[var(--muted)]">
           The SEXY way to know when your mates are in the same city.
         </p>
 
@@ -52,11 +51,11 @@ export default async function LoginPage({
             required
             autoComplete="email"
             placeholder="you@example.com"
-            className="rounded-lg border border-neutral-300 px-3 py-2 text-base outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 dark:border-neutral-700 dark:bg-neutral-900"
+            className="input"
           />
           <button
             type="submit"
-            className="mt-1 rounded-lg bg-amber-600 px-4 py-2.5 font-medium text-white hover:bg-amber-700 active:bg-amber-800"
+            className="mt-1 btn-amber"
           >
             Email me a sign-in link
           </button>
@@ -65,10 +64,8 @@ export default async function LoginPage({
         {message && (
           <p
             role="status"
-            className={`mt-4 rounded-lg px-3 py-2 text-sm ${
-              message.tone === "ok"
-                ? "bg-green-50 text-green-800 dark:bg-green-950 dark:text-green-200"
-                : "bg-red-50 text-red-800 dark:bg-red-950 dark:text-red-200"
+            className={`mt-4 banner ${
+              message.tone === "ok" ? "banner-ok" : "banner-bad"
             }`}
           >
             {message.text}

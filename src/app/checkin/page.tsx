@@ -41,17 +41,17 @@ export default async function CheckinPage({
   return (
     <main className="mx-auto w-full max-w-md flex-1 px-4 py-6">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight text-amber-600">
+        <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
           Check in
         </h1>
         <Link
           href="/"
-          className="text-sm text-neutral-500 underline-offset-2 hover:underline"
+          className="text-sm link"
         >
           Back
         </Link>
       </header>
-      <p className="mt-1 text-sm text-neutral-500">
+      <p className="mt-1 text-sm text-[var(--muted)]">
         Let your mates know which city you&apos;re in. We only ever share the
         city — never your exact spot.
       </p>
@@ -59,7 +59,7 @@ export default async function CheckinPage({
       {status && STATUS_MESSAGES[status] && (
         <p
           role="status"
-          className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-800 dark:bg-red-950 dark:text-red-200"
+          className="mt-4 banner banner-bad text-sm"
         >
           {STATUS_MESSAGES[status]}
         </p>

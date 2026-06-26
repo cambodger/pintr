@@ -18,10 +18,8 @@ const STATUS_MESSAGES: Record<string, { tone: "ok" | "error"; text: string }> =
     failed: { tone: "error", text: "Something went wrong. Try again." },
   };
 
-const inputClass =
-  "rounded-lg border border-neutral-300 px-3 py-2 text-base outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 dark:border-neutral-700 dark:bg-neutral-900";
-const buttonClass =
-  "mt-1 rounded-lg bg-amber-600 px-4 py-2.5 font-medium text-white hover:bg-amber-700 active:bg-amber-800";
+const inputClass = "input";
+const buttonClass = "btn-amber";
 
 export default async function SettingsPage({
   searchParams,
@@ -48,12 +46,12 @@ export default async function SettingsPage({
   return (
     <main className="mx-auto w-full max-w-md flex-1 px-4 py-6">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight text-amber-600">
+        <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
           Settings
         </h1>
         <Link
           href="/"
-          className="text-sm text-neutral-500 underline-offset-2 hover:underline"
+          className="text-sm link"
         >
           Back
         </Link>
@@ -62,17 +60,15 @@ export default async function SettingsPage({
       {message && (
         <p
           role="status"
-          className={`mt-4 rounded-lg px-3 py-2 text-sm ${
-            message.tone === "ok"
-              ? "bg-green-50 text-green-800 dark:bg-green-950 dark:text-green-200"
-              : "bg-red-50 text-red-800 dark:bg-red-950 dark:text-red-200"
+          className={`mt-4 banner text-sm ${
+            message.tone === "ok" ? "banner-ok" : "banner-bad"
           }`}
         >
           {message.text}
         </p>
       )}
 
-      <section className="mt-6 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <section className="mt-6 card p-4">
         <h2 className="font-semibold">Profile</h2>
         <form action={updateProfile} className="mt-3 flex flex-col gap-3">
           <label htmlFor="display_name" className="text-sm font-medium">
@@ -102,9 +98,9 @@ export default async function SettingsPage({
         </form>
       </section>
 
-      <section className="mt-4 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <section className="mt-4 card p-4">
         <h2 className="font-semibold">Status</h2>
-        <p className="mt-1 text-sm text-neutral-500">
+        <p className="mt-1 text-sm text-[var(--muted)]">
           A line shown next to your pin. Leave blank to clear it.
         </p>
         <form action={updateStatus} className="mt-3 flex flex-col gap-3">
@@ -130,9 +126,9 @@ export default async function SettingsPage({
         </form>
       </section>
 
-      <section className="mt-4 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <section className="mt-4 card p-4">
         <h2 className="font-semibold">Visibility</h2>
-        <p className="mt-1 text-sm text-neutral-500">
+        <p className="mt-1 text-sm text-[var(--muted)]">
           {me.ghost_mode
             ? "You're invisible — no one can see where you are."
             : "You're visible to your groups."}
@@ -145,11 +141,7 @@ export default async function SettingsPage({
           />
           <button
             type="submit"
-            className={
-              me.ghost_mode
-                ? "rounded-lg bg-amber-600 px-4 py-2.5 font-medium text-white hover:bg-amber-700"
-                : "rounded-lg border border-neutral-300 px-4 py-2.5 font-medium hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-900"
-            }
+            className={me.ghost_mode ? "btn-amber" : "btn-ghost"}
           >
             {me.ghost_mode ? "Come back online" : "👻 Go invisible"}
           </button>

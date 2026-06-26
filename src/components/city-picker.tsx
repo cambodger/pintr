@@ -79,7 +79,7 @@ export function CityPicker({ cities }: { cities: City[] }) {
         type="button"
         onClick={detect}
         disabled={locating}
-        className="w-full rounded-lg bg-amber-600 px-4 py-3 font-medium text-white hover:bg-amber-700 active:bg-amber-800 disabled:opacity-60"
+        className="btn-amber w-full disabled:opacity-60"
       >
         {locating ? "Locating…" : "📍 Use my location"}
       </button>
@@ -87,7 +87,7 @@ export function CityPicker({ cities }: { cities: City[] }) {
       {error && (
         <p
           role="status"
-          className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-800 dark:bg-red-950 dark:text-red-200"
+          className="mt-3 banner banner-bad"
         >
           {error}
         </p>
@@ -107,17 +107,17 @@ export function CityPicker({ cities }: { cities: City[] }) {
         placeholder="…or search for a city"
         autoComplete="off"
         spellCheck={false}
-        className="mt-5 w-full rounded-lg border border-neutral-300 px-3 py-2 text-base outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 dark:border-neutral-700 dark:bg-neutral-900"
+        className="mt-5 w-full input"
       />
 
-      <ul className="mt-2 divide-y divide-neutral-100 dark:divide-neutral-800">
+      <ul className="mt-2 divide-y divide-[var(--line)]">
         {matches.map((c) => (
           <li key={c.id}>
             <form action={checkInCity}>
               <input type="hidden" name="city_id" value={c.id} />
               <button
                 type="submit"
-                className="w-full py-3 text-left text-sm hover:text-amber-700"
+                className="w-full py-3 text-left text-sm hover:text-[var(--amber)]"
               >
                 {cityLabel(c.name, c.country_code)}
               </button>
@@ -125,7 +125,7 @@ export function CityPicker({ cities }: { cities: City[] }) {
           </li>
         ))}
         {matches.length === 0 && (
-          <li className="py-3 text-sm text-neutral-500">
+          <li className="py-3 text-sm text-[var(--muted)]">
             No match in the list — &ldquo;Use my location&rdquo; works anywhere.
           </li>
         )}

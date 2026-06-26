@@ -13,8 +13,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "The SEXY way to know when your mates are in the same city.",
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#d97706",
+    background_color: "#0a0e27",
+    theme_color: "#0a0e27",
     icons: [
       {
         src: "/icons/icon-192.png",

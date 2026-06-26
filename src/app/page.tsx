@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { CopyField } from "@/components/copy-field";
 import { PresenceMap, type PresencePin } from "@/components/presence-map";
+import { Wordmark } from "@/components/wordmark";
 import { cityLabel, timeAgo } from "@/lib/format";
 import { clearPresence, setGhost, signOut } from "./actions";
 
@@ -96,17 +97,15 @@ export default async function HomePage({
   return (
     <main className="mx-auto w-full max-w-md flex-1 px-4 py-6">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight text-amber-600">
-          pintr 🍺
-        </h1>
-        <div className="flex items-center gap-4 text-sm text-neutral-500">
-          <Link href="/settings" className="underline-offset-2 hover:underline">
+        <Wordmark height={26} />
+        <div className="flex items-center gap-4 text-sm text-[var(--muted)]">
+          <Link href="/settings" className="link">
             Settings
           </Link>
           <form action={signOut}>
             <button
               type="submit"
-              className="underline-offset-2 hover:underline"
+              className="link"
             >
               Sign out
             </button>
@@ -117,20 +116,20 @@ export default async function HomePage({
       {ping && (
         <p
           role="status"
-          className="mt-4 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900 dark:bg-amber-950 dark:text-amber-100"
+          className="mt-4 banner banner-ping text-sm"
         >
           {ping}
         </p>
       )}
 
       {me.ghost_mode && (
-        <div className="mt-4 flex items-center justify-between rounded-lg bg-neutral-100 px-3 py-2 text-sm dark:bg-neutral-900">
+        <div className="mt-4 flex items-center justify-between rounded-lg bg-[var(--surface)] px-3 py-2 text-sm">
           <span>👻 You&apos;re invisible — no one can see where you are.</span>
           <form action={setGhost}>
             <input type="hidden" name="ghost" value="false" />
             <button
               type="submit"
-              className="font-medium text-amber-700 underline-offset-2 hover:underline"
+              className="font-medium link"
             >
               Back online
             </button>
@@ -144,38 +143,38 @@ export default async function HomePage({
 
       <Link
         href="/checkin"
-        className="mt-4 block rounded-xl bg-amber-600 px-4 py-3 text-center font-medium text-white hover:bg-amber-700 active:bg-amber-800"
+        className="mt-4 block btn-amber text-center"
       >
         📍 Check in
       </Link>
 
-      <div className="mt-3 flex justify-center gap-6 text-sm text-neutral-500">
-        <Link href="/pings" className="underline-offset-2 hover:underline">
+      <div className="mt-3 flex justify-center gap-6 text-sm text-[var(--muted)]">
+        <Link href="/pings" className="link">
           Pings
         </Link>
-        <Link href="/group" className="underline-offset-2 hover:underline">
+        <Link href="/group" className="link">
           Group
         </Link>
         {!me.ghost_mode && (
           <form action={setGhost}>
             <input type="hidden" name="ghost" value="true" />
-            <button type="submit" className="underline-offset-2 hover:underline">
+            <button type="submit" className="link">
               Go invisible
             </button>
           </form>
         )}
         {myPin && (
           <form action={clearPresence}>
-            <button type="submit" className="underline-offset-2 hover:underline">
+            <button type="submit" className="link">
               Stop sharing
             </button>
           </form>
         )}
       </div>
 
-      <section className="mt-6 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <section className="mt-6 card p-4">
         <h2 className="font-semibold">Who&apos;s about</h2>
-        <ul className="mt-2 divide-y divide-neutral-100 dark:divide-neutral-800">
+        <ul className="mt-2 divide-y divide-[var(--line)]">
           {rosterSorted.map((m) => {
             const here = presenceByMember.get(m.id);
             const isMe = m.id === me.id;
@@ -188,12 +187,12 @@ export default async function HomePage({
                   <p className="font-medium">
                     {m.display_name}
                     {isMe && (
-                      <span className="ml-1 text-xs text-neutral-400">
+                      <span className="ml-1 text-xs text-[var(--muted)]">
                         (you)
                       </span>
                     )}
                   </p>
-                  <p className="truncate text-sm text-neutral-500">
+                  <p className="truncate text-sm text-[var(--muted)]">
                     {here
                       ? `${cityLabel(here.city_name ?? "", here.country_code)} · ${timeAgo(here.since ?? "")}`
                       : m.ghost_mode
@@ -207,9 +206,9 @@ export default async function HomePage({
         </ul>
       </section>
 
-      <section className="mt-4 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <section className="mt-4 card p-4">
         <h2 className="font-semibold">{primaryGroup.name}</h2>
-        <p className="mt-1 text-sm text-neutral-500">
+        <p className="mt-1 text-sm text-[var(--muted)]">
           Share this code to bring a mate in:
         </p>
         <div className="mt-3">

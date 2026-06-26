@@ -28,12 +28,12 @@ export function CopyField({ value, label }: { value: string; label: string }) {
         aria-label={label}
         value={value}
         onFocus={(e) => e.currentTarget.select()}
-        className="min-w-0 flex-1 rounded-lg border border-neutral-300 bg-neutral-50 px-3 py-2 font-mono text-xs text-neutral-600 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300"
+        className="min-w-0 flex-1 rounded-lg border border-[var(--line)] bg-[var(--navy2)] px-3 py-2 font-mono text-xs text-[var(--muted)]"
       />
       <button
         type="button"
         onClick={copy}
-        className="shrink-0 rounded-lg border border-neutral-300 px-3 text-sm font-medium hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-900"
+        className="shrink-0 rounded-lg border border-[var(--line)] px-3 text-sm font-medium hover:bg-white/5"
       >
         {copied ? "Copied ✓" : "Copy"}
       </button>

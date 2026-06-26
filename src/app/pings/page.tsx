@@ -57,27 +57,27 @@ export default async function PingsPage() {
   return (
     <main className="mx-auto w-full max-w-md flex-1 px-4 py-6">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight text-amber-600">
+        <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
           Pings 🍻
         </h1>
         <Link
           href="/"
-          className="text-sm text-neutral-500 underline-offset-2 hover:underline"
+          className="text-sm link"
         >
           Back
         </Link>
       </header>
-      <p className="mt-1 text-sm text-neutral-500">
+      <p className="mt-1 text-sm text-[var(--muted)]">
         Every time you and a mate landed in the same city.
       </p>
 
       {(matches ?? []).length === 0 ? (
-        <p className="mt-8 rounded-xl border border-dashed border-neutral-300 p-6 text-center text-sm text-neutral-500 dark:border-neutral-700">
+        <p className="mt-8 card-dashed p-6 text-center text-sm text-[var(--muted)]">
           No pings yet. Check in somewhere — when a mate&apos;s in the same
           city, it&apos;ll show up here.
         </p>
       ) : (
-        <ul className="mt-4 divide-y divide-neutral-100 dark:divide-neutral-800">
+        <ul className="mt-4 divide-y divide-[var(--line)]">
           {(matches ?? []).map((m) => {
             const otherId = m.member_a === me.id ? m.member_b : m.member_a;
             const other = otherById.get(otherId);
@@ -91,7 +91,7 @@ export default async function PingsPage() {
                   <p className="font-medium">
                     You &amp; {other?.display_name ?? "a mate"}
                   </p>
-                  <p className="text-sm text-neutral-500">
+                  <p className="text-sm text-[var(--muted)]">
                     {city ? cityLabel(city.name, city.country_code) : "somewhere"}
                     {" · "}
                     {new Date(m.created_at).toLocaleDateString("en-GB", {

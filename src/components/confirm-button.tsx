@@ -40,7 +40,7 @@ export function ConfirmButton({
       className={
         className ??
         `text-sm underline-offset-2 hover:underline ${
-          armed ? "font-medium text-red-700" : "text-red-600"
+          armed ? "font-medium text-[var(--bad)]" : "text-[var(--bad)]"
         }`
       }
     >

@@ -35,10 +35,8 @@ function StatusBanner({ status }: { status?: string }) {
   return (
     <p
       role="status"
-      className={`mt-4 rounded-lg px-3 py-2 text-sm ${
-        message.tone === "ok"
-          ? "bg-green-50 text-green-800 dark:bg-green-950 dark:text-green-200"
-          : "bg-red-50 text-red-800 dark:bg-red-950 dark:text-red-200"
+      className={`mt-4 banner ${
+        message.tone === "ok" ? "banner-ok" : "banner-bad"
       }`}
     >
       {message.text}
@@ -46,10 +44,8 @@ function StatusBanner({ status }: { status?: string }) {
   );
 }
 
-const inputClass =
-  "rounded-lg border border-neutral-300 px-3 py-2 text-base outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-200 dark:border-neutral-700 dark:bg-neutral-900";
-const buttonClass =
-  "mt-1 rounded-lg bg-amber-600 px-4 py-2.5 font-medium text-white hover:bg-amber-700 active:bg-amber-800";
+const inputClass = "input";
+const buttonClass = "mt-1 btn-amber";
 
 /**
  * Two-step onboarding. The step isn't stored — it's derived from the database
@@ -79,15 +75,15 @@ export default async function OnboardingPage({
   if (!me) {
     return (
       <main className="mx-auto w-full max-w-md flex-1 px-4 py-10">
-        <h1 className="text-2xl font-bold tracking-tight text-amber-600">
-          Welcome to pintr 🍺
+        <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
+          Welcome to pintr
         </h1>
-        <p className="mt-1 text-sm text-neutral-500">
+        <p className="mt-1 text-sm text-[var(--muted)]">
           First, how should you show up on the map?
         </p>
         <StatusBanner status={status} />
 
-        <section className="mt-8 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+        <section className="mt-8 card p-4">
           <form action={saveProfile} className="flex flex-col gap-3">
             <label htmlFor="display_name" className="text-sm font-medium">
               Your name
@@ -110,7 +106,7 @@ export default async function OnboardingPage({
               defaultValue="📍"
               className={inputClass}
             />
-            <p className="text-xs text-neutral-400">
+            <p className="text-xs text-[var(--muted)]">
               This is your marker on the map. Try 🍺 🧭 🐙 🎯 🦊 🌮 — paste any
               emoji you like.
             </p>
@@ -136,18 +132,18 @@ export default async function OnboardingPage({
   // ----- Step 2: profile exists, no group yet --------------------------
   return (
     <main className="mx-auto w-full max-w-md flex-1 px-4 py-10">
-      <h1 className="text-2xl font-bold tracking-tight text-amber-600">
+      <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
         Nearly there, {me.display_name}
       </h1>
-      <p className="mt-1 text-sm text-neutral-500">
+      <p className="mt-1 text-sm text-[var(--muted)]">
         A group is your circle of mates. Start one and share the code, or join
         with a code someone sent you.
       </p>
       <StatusBanner status={status} />
 
-      <section className="mt-8 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <section className="mt-8 card p-4">
         <h2 className="font-semibold">Start a group</h2>
-        <p className="mt-1 text-sm text-neutral-500">
+        <p className="mt-1 text-sm text-[var(--muted)]">
           You&apos;ll get an invite code to share.
         </p>
         <form action={createGroup} className="mt-3 flex flex-col gap-3">
@@ -168,9 +164,9 @@ export default async function OnboardingPage({
         </form>
       </section>
 
-      <div className="mt-6 text-center text-sm text-neutral-400">— or —</div>
+      <div className="mt-6 text-center text-sm text-[var(--muted)]">— or —</div>
 
-      <section className="mt-6 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+      <section className="mt-6 card p-4">
         <h2 className="font-semibold">Join a group</h2>
         <form action={joinGroup} className="mt-3 flex flex-col gap-3">
           <label htmlFor="invite_code" className="text-sm font-medium">

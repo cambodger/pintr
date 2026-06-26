@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
+/* ── pintr brand palette (see BRAND.md) ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --navy: #0a0e27;
+  --navy2: #101537;
+  --navy-hi: #1b2150;
+  --surface: #141e3a;
+  --surface2: #1b2748;
+  --line: rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.20);
+  --ink: #eef2fb;
+  --muted: #9aa7c6;
+  --amber: #f59e0b;
+  --amber-bright: #fcd34d;
+  --amber-deep: #b45309;
+  --pink: #ff2e88;
+  --pink-bright: #ff5ba0;
+  --foam: #fff7e6;
+  --ok: #34d399;
+  --bad: #fb7185;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  min-height: 100%;
+  background:
+    radial-gradient(120% 80% at 50% -12%, #1b2150 0%, #0a0e27 58%) no-repeat fixed,
+    var(--navy);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+::selection {
+  background: rgba(255, 46, 136, 0.32);
+}
+
+/* ── reusable brand components ── */
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .card-dashed {
+    background: transparent;
+    border: 1px dashed var(--line-strong);
+    border-radius: 16px;
+  }
+  .input {
+    width: 100%;
+    background: var(--navy2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .input::placeholder {
+    color: #66739a;
+  }
+  .input:focus {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.22);
+  }
+  .btn-amber {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--amber);
+    color: #1b1205;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.65rem 1rem;
+    transition: background 0.15s;
+  }
+  .btn-amber:hover {
+    background: var(--amber-bright);
+  }
+  .btn-amber:active {
+    background: var(--amber-deep);
+    color: #fff;
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 0.65rem 1rem;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--amber);
+    background: rgba(245, 158, 11, 0.08);
+  }
+  .banner {
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  .banner-ok {
+    background: rgba(52, 211, 153, 0.14);
+    color: #86efac;
+  }
+  .banner-bad {
+    background: rgba(251, 113, 133, 0.14);
+    color: #fda4af;
+  }
+  .banner-ping {
+    background: rgba(255, 46, 136, 0.16);
+    color: #ffadd2;
+  }
+  .link {
+    color: var(--amber);
+    text-underline-offset: 2px;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
 }

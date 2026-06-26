@@ -58,22 +58,16 @@ export default async function GroupPage({
   return (
     <main className="mx-auto w-full max-w-md flex-1 px-4 py-6">
       <header className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight text-amber-600">
+        <h1 className="text-2xl font-bold tracking-tight text-[var(--amber)]">
           {groups.length > 1 ? "Your groups" : "Your group"}
         </h1>
-        <Link
-          href="/"
-          className="text-sm text-neutral-500 underline-offset-2 hover:underline"
-        >
+        <Link href="/" className="text-sm link">
           Back
         </Link>
       </header>
 
       {status === "failed" && (
-        <p
-          role="status"
-          className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-800 dark:bg-red-950 dark:text-red-200"
-        >
+        <p role="status" className="mt-4 banner banner-bad text-sm">
           Something went wrong. Try again in a minute.
         </p>
       )}
@@ -81,10 +75,7 @@ export default async function GroupPage({
       {groups.map((group) => {
         const groupMembers = membersByGroup.get(group.id) ?? [];
         return (
-          <section
-            key={group.id}
-            className="mt-6 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800"
-          >
+          <section key={group.id} className="mt-6 card p-4">
             <h2 className="font-semibold">{group.name}</h2>
 
             <ul className="mt-3 flex flex-col gap-1.5">
@@ -96,7 +87,7 @@ export default async function GroupPage({
                   <span>
                     {m.display_name}
                     {m.id === me.id && (
-                      <span className="ml-1 text-xs text-neutral-400">
+                      <span className="ml-1 text-xs text-[var(--muted)]">
                         (you)
                       </span>
                     )}
@@ -105,7 +96,7 @@ export default async function GroupPage({
               ))}
             </ul>
 
-            <p className="mt-4 text-sm text-neutral-500">Invite code:</p>
+            <p className="mt-4 text-sm text-[var(--muted)]">Invite code:</p>
             <div className="mt-1">
               <CopyField value={group.invite_code} label="Group invite code" />
             </div>
