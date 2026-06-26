@@ -1,7 +1,9 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { INVITE_COOKIE } from "@/lib/invite";
 
 // Mutations go through SECURITY DEFINER SQL functions via supabase.rpc() —
 // never direct table writes (see AGENTS.md). The functions validate the
@@ -33,6 +35,20 @@ export async function saveProfile(formData: FormData) {
   if (error) {
     console.error("save_profile failed:", error.message);
     redirect(`/onboarding?status=${statusForRpcError(error.message)}`);
+  }
+
+  // Came in via an invite link? Finish the join now and skip the group step.
+  const jar = await cookies();
+  const invite = jar.get(INVITE_COOKIE)?.value;
+  if (invite && INVITE_CODE_RE.test(invite)) {
+    const { error: joinErr } = await supabase.rpc("join_group", {
+      p_code: invite,
+    });
+    jar.delete(INVITE_COOKIE);
+    if (!joinErr) {
+      redirect(`/?ping=${encodeURIComponent("🍻 You're in! Get the pints in.")}`);
+    }
+    // Join failed (dodgy code) — fall through to the normal group step.
   }
 
   redirect("/onboarding?status=profile_saved");

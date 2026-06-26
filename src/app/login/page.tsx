@@ -10,6 +10,10 @@ const STATUS_MESSAGES: Record<string, { tone: "ok" | "error"; text: string }> =
       tone: "ok",
       text: "Right, check your email, ya muppet — your sign-in link's on its way.",
     },
+    invite: {
+      tone: "ok",
+      text: "Sign in below and we'll drop you straight into your mate's group.",
+    },
     invalid_email: {
       tone: "error",
       text: "That's not an email address, ya daft cunt. Try again.",

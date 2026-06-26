@@ -43,6 +43,9 @@ export default async function proxy(request: NextRequest) {
   const isPublicPath =
     path.startsWith("/login") ||
     path.startsWith("/auth") ||
+    // Invite links work out who you are and route accordingly (they handle the
+    // logged-out case themselves), so they mustn't be bounced to /login.
+    path.startsWith("/join") ||
     // Daily DB ping from the Vercel cron — must not bounce to /login.
     path === "/api/keepalive" ||
     // Dev-only test-user switcher (the page itself 404s in production).

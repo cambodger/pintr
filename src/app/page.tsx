@@ -5,6 +5,7 @@ import { CopyField } from "@/components/copy-field";
 import { PresenceMap, type PresencePin } from "@/components/presence-map";
 import { Wordmark } from "@/components/wordmark";
 import { InstallPrompt } from "@/components/install-prompt";
+import { InviteShare } from "@/components/invite-share";
 import { cityLabel, timeAgo } from "@/lib/format";
 import { clearPresence, setGhost, signOut } from "./actions";
 
@@ -202,9 +203,18 @@ export default async function HomePage({
       <section className="mt-4 card p-4">
         <h2 className="font-semibold">{primaryGroup.name}</h2>
         <p className="mt-1 text-sm text-[var(--muted)]">
-          Fling this code at a mate to drag &apos;em in:
+          Drag a mate in — fire them the link:
         </p>
         <div className="mt-3">
+          <InviteShare
+            code={primaryGroup.invite_code}
+            groupName={primaryGroup.name}
+          />
+        </div>
+        <p className="mt-3 text-xs text-[var(--muted)]">
+          …or hand &apos;em the raw code:
+        </p>
+        <div className="mt-1">
           <CopyField value={primaryGroup.invite_code} label="Group invite code" />
         </div>
       </section>

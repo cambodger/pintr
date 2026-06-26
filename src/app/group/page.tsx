@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { CopyField } from "@/components/copy-field";
+import { InviteShare } from "@/components/invite-share";
 import { ConfirmButton } from "@/components/confirm-button";
 import { leaveGroup } from "./actions";
 
@@ -97,8 +98,12 @@ export default async function GroupPage({
             </ul>
 
             <p className="mt-4 text-sm text-[var(--muted)]">
-              Invite code (fling it at a mate):
+              Drag a mate in:
             </p>
+            <div className="mt-2">
+              <InviteShare code={group.invite_code} groupName={group.name} />
+            </div>
+            <p className="mt-3 text-xs text-[var(--muted)]">…or the raw code:</p>
             <div className="mt-1">
               <CopyField value={group.invite_code} label="Group invite code" />
             </div>
